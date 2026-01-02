@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Desain Lengkap | [Nama Anda]</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#27b67e',
+                        primaryDark: '#1e8f63',
+                        secondary: '#1f2937',
+                        light: '#ffffff',
+                        bg: '#f8fafc',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(39, 182, 126, 0.1)',
+                        'nav': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #27b67e; }
+
+        .item-enter {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        .item-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 300ms, transform 300ms;
+        }
+
+        /* Loading Spinner Animation */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #27b67e;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-bg text-slate-600 font-sans selection:bg-primary selection:text-white overflow-x-hidden">
+
+    <!-- Floating Navigation -->
+    <div class="fixed top-6 left-0 w-full z-50 flex justify-center px-6">
+        <nav class="bg-white/90 backdrop-blur-md border border-slate-200 shadow-nav rounded-full px-6 py-3 flex justify-between items-center w-full max-w-5xl transition-all duration-300">
+            <a href="index.html" class="text-xl font-bold text-slate-800 tracking-tight flex items-center gap-2 group">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                    <i class="fas fa-arrow-left text-slate-600 text-sm group-hover:text-white transition-colors"></i>
+                </div>
+                <span>Kembali</span>
+            </a>
+            
+            <span class="font-bold text-slate-800 hidden md:block">Portofolio Desain</span>
+
+            <div class="flex items-center gap-2 md:gap-3">
+                <!-- Generator Button Removed -->
+                <a href="index.html#contact" class="hidden lg:inline-block px-5 py-2 bg-primary text-white text-sm font-medium rounded-full hover:bg-primaryDark transition-all shadow-lg shadow-primary/20">
+                    Hire Me
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Header Section -->
+    <section class="pt-40 pb-12 px-6 text-center">
+        <div class="container mx-auto">
+            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">My Creative Space</span>
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Galeri Desain <span class="text-primary">Eksklusif</span></h1>
+            <p class="text-slate-500 max-w-2xl mx-auto text-lg">
+                Kumpulan karya desain visual terbaik yang saya kerjakan menggunakan Canva dan tools lainnya.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section class="pb-12 px-6">
+        <div class="container mx-auto flex flex-wrap justify-center gap-4">
+            <button onclick="filterDesigns('all')" class="filter-btn active px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-all shadow-sm font-medium ring-2 ring-transparent focus:ring-primary/20" data-filter="all">Semua</button>
+            <button onclick="filterDesigns('social')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-all shadow-sm font-medium ring-2 ring-transparent focus:ring-primary/20" data-filter="social">Social Media</button>
+            <button onclick="filterDesigns('print')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-all shadow-sm font-medium ring-2 ring-transparent focus:ring-primary/20" data-filter="print">Poster/Print</button>
+            <button onclick="filterDesigns('presentation')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-all shadow-sm font-medium ring-2 ring-transparent focus:ring-primary/20" data-filter="presentation">Presentasi</button>
+            <button onclick="filterDesigns('identity')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-all shadow-sm font-medium ring-2 ring-transparent focus:ring-primary/20" data-filter="identity">Identitas/Logo</button>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="pb-24 px-6 min-h-screen">
+        <div class="container mx-auto">
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Item 1: Smart Embed (Example) -->
+                <div class="gallery-item group relative rounded-2xl overflow-hidden shadow-sm bg-white" data-category="social">
+                    <div style="position: relative; width: 100%; height: 0; padding-top: 125.0000%;
+                        padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-bottom: 1rem; overflow: hidden;
+                        border-radius: 8px; will-change: transform;">
+                        <iframe loading="lazy"
+                            style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                            src="https://www.canva.com/design/DAG8hZHkV5w/M-VKd28HsSa5v-NwAo2btQ/view?embed"
+                            allowfullscreen="allowfullscreen" allow="fullscreen">
+                        </iframe>
+                    </div>
+                    
+                    <div class="p-4 border-t border-slate-100 bg-white">
+                        <span class="text-primary text-xs font-bold uppercase tracking-wider">Live Preview</span>
+                        <h3 class="text-slate-800 text-lg font-bold">Presentation Deck</h3>
+                        <p class="text-slate-400 text-sm">Canva • Interactive Embed</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 bg-white" data-category="print" onclick="openModal(this)">
+                    <div class="aspect-[4/5] overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e0b7a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Poster Konser Musik" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="px-3 py-1 bg-orange-500 text-white text-xs font-bold rounded-full w-fit mb-2">Poster</span>
+                        <h3 class="text-white text-xl font-bold">Event Musik Indie</h3>
+                        <p class="text-slate-300 text-sm mt-1">Canva • Print Ad</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 bg-white" data-category="presentation" onclick="openModal(this)">
+                    <div class="aspect-video overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Company Profile Deck" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full w-fit mb-2">Presentation</span>
+                        <h3 class="text-white text-xl font-bold">Company Profile Deck</h3>
+                        <p class="text-slate-300 text-sm mt-1">Canva • Corporate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-white border-t border-slate-100 text-center">
+        <p class="text-slate-500 text-sm">
+            &copy; <span id="year"></span> [Nama Anda]. 
+            <a href="index.html" class="text-primary hover:underline ml-1">Kembali ke Beranda</a>
+        </p>
+    </footer>
+
+    <!-- GENERATOR MODAL REMOVED -->
+
+    <!-- Image Modal (Lightbox) -->
+    <div id="image-modal" class="fixed inset-0 z-[60] bg-black/90 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <button onclick="closeModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-primary transition-colors focus:outline-none">&times;</button>
+        <div class="max-w-5xl w-full max-h-[90vh] overflow-hidden rounded-lg relative">
+            <img id="modal-img" src="" alt="Full View" class="w-full h-full object-contain">
+            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-8">
+                <h3 id="modal-title" class="text-white text-2xl font-bold">Project Title</h3>
+                <p id="modal-desc" class="text-slate-300 mt-1">Description</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- FILTER FUNCTIONALITY ---
+        function filterDesigns(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                if(btn.dataset.filter === category) {
+                    btn.classList.add('bg-primary', 'text-white', 'border-primary');
+                    btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                } else {
+                    btn.classList.remove('bg-primary', 'text-white', 'border-primary');
+                    btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                }
+            });
+
+            items.forEach(item => {
+                if(category === 'all' || item.dataset.category === category) {
+                    item.classList.remove('hidden');
+                    item.classList.add('item-enter');
+                    setTimeout(() => {
+                        item.classList.remove('item-enter');
+                        item.classList.add('item-enter-active');
+                    }, 50);
+                } else {
+                    item.classList.add('hidden');
+                    item.classList.remove('item-enter-active');
+                }
+            });
+        }
+
+        // --- SMART CANVA EMBED LOGIC ---
+        function processSingleEmbed(container) {
+            const rawUrl = container.dataset.canvaOembed;
+            if (!rawUrl) return;
+
+            let cleanUrl = rawUrl.split('?')[0];
+            cleanUrl = cleanUrl.replace(/\/edit$/, '/view').replace(/\/watch$/, '/view');
+            if (!cleanUrl.endsWith('/view')) {
+                cleanUrl += '/view';
+            }
+            const embedSrc = `${cleanUrl}?embed`;
+
+            const iframe = document.createElement('iframe');
+            iframe.loading = "lazy";
+            
+            iframe.style.cssText = "position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;";
+            
+            iframe.setAttribute('src', embedSrc);
+            iframe.setAttribute('allowfullscreen', 'allowfullscreen'); 
+            iframe.setAttribute('allow', 'fullscreen');
+            
+            setTimeout(() => {
+                container.innerHTML = ''; 
+                container.appendChild(iframe);
+            }, 500);
+        }
+
+        function initCanvaSmartEmbeds() {
+            const containers = document.querySelectorAll('[data-canva-oembed]');
+            containers.forEach(container => processSingleEmbed(container));
+        }
+
+        // --- HELPER FUNCTION FOR SAVED DESIGNS ---
+        // Fungsi ini tetap ada untuk menampilkan data yang SUDAH tersimpan sebelumnya
+        function createDesignCard(design) {
+            const newItem = document.createElement('div');
+            // Menghapus 'item-enter' agar langsung terlihat, atau kita handle animasinya nanti
+            newItem.className = 'gallery-item group relative rounded-2xl overflow-hidden shadow-sm bg-white item-enter';
+            newItem.dataset.category = design.category;
+            newItem.id = `design-${design.id}`;
+
+            let paddingTop = '125.0000%';
+
+            // Tombol hapus DIHAPUS agar tampilan bersih untuk viewer
+            
+            newItem.innerHTML = `
+                <div style="position: relative; width: 100%; height: 0; padding-top: ${paddingTop};
+                    padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-bottom: 1rem; overflow: hidden;
+                    border-radius: 8px; will-change: transform;"
+                     data-canva-oembed="${design.url}">
+                    <div class="absolute inset-0 flex items-center justify-center text-slate-400 gap-2">
+                        <div class="loader"></div> <span>Memproses...</span>
+                    </div>
+                </div>
+                
+                <div class="p-4 border-t border-slate-100 bg-white">
+                    <span class="text-primary text-xs font-bold uppercase tracking-wider">Project Preview</span>
+                    <h3 class="text-slate-800 text-lg font-bold">${design.title}</h3>
+                    <p class="text-slate-400 text-sm line-clamp-2">${design.desc}</p>
+                </div>
+            `;
+            return newItem;
+        }
+
+        // Muat dari LocalStorage saat start (READ ONLY MODE)
+        function loadDesignsFromStorage() {
+            const saved = JSON.parse(localStorage.getItem('my_portfolio_designs') || '[]');
+            const grid = document.getElementById('gallery-grid');
+            
+            for (let i = saved.length - 1; i >= 0; i--) {
+                const design = saved[i];
+                const card = createDesignCard(design);
+                
+                // Masukkan ke grid
+                grid.insertBefore(card, grid.firstChild);
+                
+                // PERBAIKAN: Memicu animasi agar elemen terlihat (menghapus opacity: 0)
+                // Kita beri sedikit delay agar transisi CSS berjalan halus
+                setTimeout(() => {
+                    card.classList.remove('item-enter');
+                    card.classList.add('item-enter-active');
+                }, 50);
+                
+                // Proses embed segera
+                const embedContainer = card.querySelector('[data-canva-oembed]');
+                processSingleEmbed(embedContainer);
+            }
+        }
+
+        // --- MODAL IMAGE LOGIC ---
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+
+        function openModal(element) {
+            const imgEl = element.querySelector('img');
+            if (!imgEl) return; 
+
+            const img = imgEl.src;
+            const title = element.querySelector('h3').innerText;
+            const desc = element.querySelector('p').innerText;
+
+            modalImg.src = img;
+            modalTitle.innerText = title;
+            modalDesc.innerText = desc;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load saved designs FIRST (Viewer Mode)
+            loadDesignsFromStorage();
+            
+            // Then init static embeds
+            initCanvaSmartEmbeds();
+            
+            const allBtn = document.querySelector('[data-filter="all"]');
+            if(allBtn) {
+                allBtn.classList.add('bg-primary', 'text-white', 'border-primary');
+                allBtn.classList.remove('bg-white', 'text-slate-600');
+            }
+        });
+    </script>
+</body>
+</html>

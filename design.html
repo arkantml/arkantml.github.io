@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Desain Lengkap | [Nama Anda]</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#27b67e',
+                        primaryDark: '#1e8f63',
+                        secondary: '#1f2937',
+                        light: '#ffffff',
+                        bg: '#f8fafc',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(39, 182, 126, 0.1)',
+                        'nav': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #27b67e; }
+
+        .item-enter {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        .item-enter-active {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 300ms, transform 300ms;
+        }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #27b67e;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-bg text-slate-600 font-sans selection:bg-primary selection:text-white overflow-x-hidden">
+
+    <div class="fixed top-6 left-0 w-full z-50 flex justify-center px-6">
+        <nav class="bg-white/90 backdrop-blur-md border border-slate-200 shadow-nav rounded-full px-6 py-3 flex justify-between items-center w-full max-w-5xl transition-all duration-300">
+            <a href="index.html" class="text-xl font-bold text-slate-800 tracking-tight flex items-center gap-2 group">
+                <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                    <i class="fas fa-arrow-left text-slate-600 text-sm group-hover:text-white transition-colors"></i>
+                </div>
+                <span>Kembali</span>
+            </a>
+            
+            <span class="font-bold text-slate-800 hidden md:block">Portofolio Desain</span>
+
+            <div class="flex items-center gap-2 md:gap-3">
+                <button onclick="openGenerator()" class="flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 transition-all border border-slate-200">
+                    <i class="fas fa-wand-magic-sparkles text-primary"></i> <span class="hidden sm:inline">Generator</span>
+                </button>
+
+                <a href="index.html#contact" class="hidden lg:inline-block px-5 py-2 bg-primary text-white text-sm font-medium rounded-full hover:bg-primaryDark transition-all shadow-lg shadow-primary/20">
+                    Hire Me
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <section class="pt-40 pb-12 px-6 text-center">
+        <div class="container mx-auto">
+            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">My Creative Space</span>
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Galeri Desain <span class="text-primary">Eksklusif</span></h1>
+            <p class="text-slate-500 max-w-2xl mx-auto text-lg">
+                Kumpulan karya desain visual terbaik yang saya kerjakan menggunakan Canva dan tools lainnya.
+            </p>
+        </div>
+    </section>
+
+    <section class="pb-12 px-6">
+        <div class="container mx-auto flex flex-wrap justify-center gap-4">
+            <button onclick="filterDesigns('all')" class="filter-btn active px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-all shadow-sm font-medium ring-2 ring-transparent focus:ring-primary/20" data-filter="all">Semua</button>
+            <button onclick="filterDesigns('social')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-all shadow-sm font-medium ring-2 ring-transparent focus:ring-primary/20" data-filter="social">Social Media</button>
+            <button onclick="filterDesigns('print')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-all shadow-sm font-medium ring-2 ring-transparent focus:ring-primary/20" data-filter="print">Poster/Print</button>
+            <button onclick="filterDesigns('presentation')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-all shadow-sm font-medium ring-2 ring-transparent focus:ring-primary/20" data-filter="presentation">Presentasi</button>
+            <button onclick="filterDesigns('identity')" class="filter-btn px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary transition-all shadow-sm font-medium ring-2 ring-transparent focus:ring-primary/20" data-filter="identity">Identitas/Logo</button>
+        </div>
+    </section>
+
+    <section class="pb-24 px-6 min-h-screen">
+        <div class="container mx-auto">
+            <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="gallery-item group relative rounded-2xl overflow-hidden shadow-sm bg-white" data-category="social">
+                    <div style="position: relative; width: 100%; height: 0; padding-top: 125.0000%;
+                        padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-bottom: 1rem; overflow: hidden;
+                        border-radius: 8px; will-change: transform;">
+                        <iframe loading="lazy"
+                            style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                            src="https://www.canva.com/design/DAG8hZHkV5w/M-VKd28HsSa5v-NwAo2btQ/view?embed"
+                            allowfullscreen="allowfullscreen" allow="fullscreen">
+                        </iframe>
+                    </div>
+                    
+                    <div class="p-4 border-t border-slate-100 bg-white">
+                        <span class="text-primary text-xs font-bold uppercase tracking-wider">Live Preview</span>
+                        <h3 class="text-slate-800 text-lg font-bold">Presentation Deck</h3>
+                        <p class="text-slate-400 text-sm">Canva • Interactive Embed</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 bg-white" data-category="print" onclick="openModal(this)">
+                    <div class="aspect-[4/5] overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e0b7a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Poster Konser Musik" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="px-3 py-1 bg-orange-500 text-white text-xs font-bold rounded-full w-fit mb-2">Poster</span>
+                        <h3 class="text-white text-xl font-bold">Event Musik Indie</h3>
+                        <p class="text-slate-300 text-sm mt-1">Canva • Print Ad</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 bg-white" data-category="presentation" onclick="openModal(this)">
+                    <div class="aspect-video overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Company Profile Deck" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full w-fit mb-2">Presentation</span>
+                        <h3 class="text-white text-xl font-bold">Company Profile Deck</h3>
+                        <p class="text-slate-300 text-sm mt-1">Canva • Corporate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 bg-white border-t border-slate-100 text-center">
+        <p class="text-slate-500 text-sm">
+            &copy; <span id="year"></span> [Nama Anda]. 
+            <a href="index.html" class="text-primary hover:underline ml-1">Kembali ke Beranda</a>
+        </p>
+    </footer>
+
+    <div id="generator-modal" class="fixed inset-0 z-[60] bg-black/50 hidden items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform scale-95 transition-transform duration-300" id="gen-content">
+            <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-bg">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fas fa-wand-magic-sparkles text-primary"></i> Embed Generator
+                </h3>
+                <button onclick="closeGenerator()" class="text-slate-400 hover:text-red-500 transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <form onsubmit="generateDesign(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-slate-600 text-sm font-bold mb-2">Kategori Desain</label>
+                    <select id="gen-category" class="w-full px-4 py-2 rounded-lg bg-bg border border-slate-200 focus:outline-none focus:border-primary text-slate-700">
+                        <option value="social">Social Media</option>
+                        <option value="presentation">Presentation</option>
+                        <option value="print">Poster/Print</option>
+                        <option value="identity">Identity/Logo</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-slate-600 text-sm font-bold mb-2">Judul Proyek</label>
+                    <input type="text" id="gen-title" placeholder="Contoh: Instagram Feeds" class="w-full px-4 py-2 rounded-lg bg-bg border border-slate-200 focus:outline-none focus:border-primary text-slate-700" required>
+                </div>
+                
+                <div>
+                    <label class="block text-slate-600 text-sm font-bold mb-2">Deskripsi</label>
+                    <textarea id="gen-desc" rows="2" placeholder="Deskripsi proyek..." class="w-full px-4 py-2 rounded-lg bg-bg border border-slate-200 focus:outline-none focus:border-primary text-slate-700 text-sm"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-slate-600 text-sm font-bold mb-2">Link Canva (Harus Publik)</label>
+                    <div class="relative">
+                        <i class="fas fa-link absolute left-4 top-3 text-slate-400"></i>
+                        <input type="url" id="gen-link" placeholder="https://www.canva.com/design/..." class="w-full pl-10 pr-4 py-2 rounded-lg bg-bg border border-slate-200 focus:outline-none focus:border-primary text-slate-700" required>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-1">Pastikan link memiliki akses "Anyone with the link can view".</p>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primaryDark transition-all shadow-lg shadow-primary/20 mt-2 flex justify-center items-center gap-2">
+                    <i class="fas fa-bolt"></i> Generate Embed
+                </button>
+            </form>
+
+            <div class="bg-slate-50 p-4 text-center border-t border-slate-100">
+                <button onclick="clearAllDesigns()" class="text-xs text-red-500 hover:text-red-700 font-medium transition-colors flex items-center justify-center gap-2 w-full">
+                    <i class="fas fa-trash-alt"></i> Hapus Semua Riwayat Desain
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="image-modal" class="fixed inset-0 z-[60] bg-black/90 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <button onclick="closeModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-primary transition-colors focus:outline-none">&times;</button>
+        <div class="max-w-5xl w-full max-h-[90vh] overflow-hidden rounded-lg relative">
+            <img id="modal-img" src="" alt="Full View" class="w-full h-full object-contain">
+            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-8">
+                <h3 id="modal-title" class="text-white text-2xl font-bold">Project Title</h3>
+                <p id="modal-desc" class="text-slate-300 mt-1">Description</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function filterDesigns(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                if(btn.dataset.filter === category) {
+                    btn.classList.add('bg-primary', 'text-white', 'border-primary');
+                    btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                } else {
+                    btn.classList.remove('bg-primary', 'text-white', 'border-primary');
+                    btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                }
+            });
+
+            items.forEach(item => {
+                if(category === 'all' || item.dataset.category === category) {
+                    item.classList.remove('hidden');
+                    item.classList.add('item-enter');
+                    setTimeout(() => {
+                        item.classList.remove('item-enter');
+                        item.classList.add('item-enter-active');
+                    }, 50);
+                } else {
+                    item.classList.add('hidden');
+                    item.classList.remove('item-enter-active');
+                }
+            });
+        }
+
+        function processSingleEmbed(container) {
+            const rawUrl = container.dataset.canvaOembed;
+            if (!rawUrl) return;
+
+            let cleanUrl = rawUrl.split('?')[0];
+            cleanUrl = cleanUrl.replace(/\/edit$/, '/view').replace(/\/watch$/, '/view');
+            if (!cleanUrl.endsWith('/view')) {
+                cleanUrl += '/view';
+            }
+            const embedSrc = `${cleanUrl}?embed`;
+
+            const iframe = document.createElement('iframe');
+            iframe.loading = "lazy";
+            
+            iframe.style.cssText = "position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;";
+            
+            iframe.setAttribute('src', embedSrc);
+            iframe.setAttribute('allowfullscreen', 'allowfullscreen'); 
+            iframe.setAttribute('allow', 'fullscreen');
+            
+            setTimeout(() => {
+                container.innerHTML = ''; 
+                container.appendChild(iframe);
+            }, 500);
+        }
+
+        function initCanvaSmartEmbeds() {
+            const containers = document.querySelectorAll('[data-canva-oembed]');
+            containers.forEach(container => processSingleEmbed(container));
+        }
+
+        const genModal = document.getElementById('generator-modal');
+        const genContent = document.getElementById('gen-content');
+
+        function openGenerator() {
+            genModal.classList.remove('hidden');
+            genModal.classList.add('flex');
+            setTimeout(() => {
+                genModal.classList.remove('opacity-0');
+                genContent.classList.remove('scale-95');
+                genContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeGenerator() {
+            genModal.classList.add('opacity-0');
+            genContent.classList.remove('scale-100');
+            genContent.classList.add('scale-95');
+            setTimeout(() => {
+                genModal.classList.add('hidden');
+                genModal.classList.remove('flex');
+            }, 300);
+        }
+
+        function createDesignCard(design) {
+            const newItem = document.createElement('div');
+            newItem.className = 'gallery-item group relative rounded-2xl overflow-hidden shadow-sm bg-white item-enter';
+            newItem.dataset.category = design.category;
+            newItem.id = `design-${design.id}`; 
+
+            let paddingTop = '125.0000%';
+
+            const deleteButton = `
+                <button onclick="deleteDesign(${design.id})" class="absolute top-2 right-2 z-20 bg-white/80 hover:bg-red-500 hover:text-white text-slate-400 p-2 rounded-full w-8 h-8 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 shadow-sm" title="Hapus Desain">
+                    <i class="fas fa-trash-alt text-xs"></i>
+                </button>
+            `;
+
+            newItem.innerHTML = `
+                ${deleteButton}
+                <div style="position: relative; width: 100%; height: 0; padding-top: ${paddingTop};
+                    padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-bottom: 1rem; overflow: hidden;
+                    border-radius: 8px; will-change: transform;"
+                     data-canva-oembed="${design.url}">
+                    <div class="absolute inset-0 flex items-center justify-center text-slate-400 gap-2">
+                        <div class="loader"></div> <span>Memproses...</span>
+                    </div>
+                </div>
+                
+                <div class="p-4 border-t border-slate-100 bg-white">
+                    <span class="text-primary text-xs font-bold uppercase tracking-wider">Generated Preview</span>
+                    <h3 class="text-slate-800 text-lg font-bold">${design.title}</h3>
+                    <p class="text-slate-400 text-sm line-clamp-2">${design.desc}</p>
+                </div>
+            `;
+            return newItem;
+        }
+
+        function saveDesignToStorage(design) {
+            const saved = JSON.parse(localStorage.getItem('my_portfolio_designs') || '[]');
+            saved.unshift(design); 
+            localStorage.setItem('my_portfolio_designs', JSON.stringify(saved));
+        }
+
+        function deleteDesign(id) {
+            if(confirm('Apakah Anda yakin ingin menghapus desain ini?')) {
+                const saved = JSON.parse(localStorage.getItem('my_portfolio_designs') || '[]');
+                const filtered = saved.filter(d => d.id !== id);
+                localStorage.setItem('my_portfolio_designs', JSON.stringify(filtered));
+                
+                const element = document.getElementById(`design-${id}`);
+                if(element) {
+                    element.remove();
+                }
+            }
+        }
+
+        function clearAllDesigns() {
+            if(confirm('PERINGATAN: Ini akan menghapus SEMUA desain yang telah Anda generate. Tindakan ini tidak dapat dibatalkan. Lanjutkan?')) {
+                localStorage.removeItem('my_portfolio_designs');
+                location.reload(); 
+            }
+        }
+
+        function loadDesignsFromStorage() {
+            const saved = JSON.parse(localStorage.getItem('my_portfolio_designs') || '[]');
+            const grid = document.getElementById('gallery-grid');
+            
+            for (let i = saved.length - 1; i >= 0; i--) {
+                const design = saved[i];
+                const card = createDesignCard(design);
+                
+                grid.insertBefore(card, grid.firstChild);
+                
+                const embedContainer = card.querySelector('[data-canva-oembed]');
+                processSingleEmbed(embedContainer);
+            }
+        }
+
+        function generateDesign(e) {
+            e.preventDefault();
+            
+            const category = document.getElementById('gen-category').value;
+            const title = document.getElementById('gen-title').value;
+            const desc = document.getElementById('gen-desc').value || `Canva • ${category}`; 
+            const url = document.getElementById('gen-link').value;
+
+            const newDesign = {
+                id: Date.now(), 
+                category: category,
+                title: title,
+                desc: desc,
+                url: url
+            };
+
+            saveDesignToStorage(newDesign);
+
+            const grid = document.getElementById('gallery-grid');
+            const newItem = createDesignCard(newDesign);
+
+            grid.insertBefore(newItem, grid.firstChild);
+
+            setTimeout(() => {
+                newItem.classList.remove('item-enter');
+                newItem.classList.add('item-enter-active');
+            }, 50);
+
+            const embedContainer = newItem.querySelector('[data-canva-oembed]');
+            processSingleEmbed(embedContainer);
+
+            e.target.reset();
+            closeGenerator();
+
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            if(activeFilter !== 'all' && activeFilter !== category) {
+                filterDesigns('all');
+            }
+        }
+
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+
+        function openModal(element) {
+            const imgEl = element.querySelector('img');
+            if (!imgEl) return; 
+
+            const img = imgEl.src;
+            const title = element.querySelector('h3').innerText;
+            const desc = element.querySelector('p').innerText;
+
+            modalImg.src = img;
+            modalTitle.innerText = title;
+            modalDesc.innerText = desc;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDesignsFromStorage();
+            
+            initCanvaSmartEmbeds();
+            
+            const allBtn = document.querySelector('[data-filter="all"]');
+            if(allBtn) {
+                allBtn.classList.add('bg-primary', 'text-white', 'border-primary');
+                allBtn.classList.remove('bg-white', 'text-slate-600');
+            }
+        });
+    </script>
+</body>
+</html>

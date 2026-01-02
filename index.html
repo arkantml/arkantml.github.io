@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Muhammad Arkan</title>
+
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script type="module" src="./script.js"></script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #27b67e;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: #27b67e;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .design-card:hover .overlay {
+            opacity: 1;
+        }
+
+        .design-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-bg text-slate-600 font-sans selection:bg-primary selection:text-white overflow-x-hidden">
+
+    <div class="fixed top-6 left-0 w-full z-50 flex justify-center px-4">
+        <nav
+            class="bg-white/90 backdrop-blur-md border border-slate-200 shadow-nav rounded-full px-6 py-3 flex justify-between items-center w-full max-w-5xl transition-all duration-300">
+            <a href="#" class="text-xl font-bold text-slate-800 tracking-tight flex items-center gap-2 group">
+                <div
+                    class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                    <i class="fas fa-leaf text-primary text-sm group-hover:text-white transition-colors"></i>
+                </div>
+                <span>Muhammad <span class="text-primary">Arkan</span>.</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-1">
+                <a href="#home"
+                    class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-primary hover:bg-green-50 rounded-full transition-all">Beranda</a>
+                <a href="#services"
+                    class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-primary hover:bg-green-50 rounded-full transition-all">Layanan</a>
+                <a href="#designs"
+                    class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-primary hover:bg-green-50 rounded-full transition-all">Desain</a>
+                <a href="#projects"
+                    class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-primary hover:bg-green-50 rounded-full transition-all">Coding</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="#contact"
+                    class="hidden md:inline-block px-5 py-2 bg-primary text-white text-sm font-medium rounded-full hover:bg-primaryDark transition-all shadow-lg shadow-primary/20">
+                    Hire Me
+                </a>
+                <button id="mobile-menu-btn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center text-slate-600 hover:text-primary bg-slate-50 hover:bg-green-50 rounded-full transition-all focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <div id="mobile-menu"
+        class="fixed inset-0 z-40 bg-white hidden flex-col pt-32 px-8 space-y-6 md:hidden transition-all">
+        <button id="close-menu-btn" class="absolute top-8 right-8 text-2xl text-slate-400 hover:text-primary"><i
+                class="fas fa-times"></i></button>
+        <a href="#home" class="text-2xl font-bold text-slate-800 hover:text-primary">Beranda</a>
+        <a href="#services" class="text-2xl font-bold text-slate-800 hover:text-primary">Layanan</a>
+        <a href="#designs" class="text-2xl font-bold text-slate-800 hover:text-primary">Galeri Desain</a>
+        <a href="#projects" class="text-2xl font-bold text-slate-800 hover:text-primary">Proyek Coding</a>
+        <a href="#contact" class="text-primary font-bold text-xl mt-4">Hubungi Saya &rarr;</a>
+    </div>
+
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-32 pb-20">
+        <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-green-100/50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-3xl -z-10 -translate-x-1/3 translate-y-1/3">
+        </div>
+
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left reveal active order-2 md:order-1">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-green-700 bg-green-100 rounded-full border border-green-200">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    OPEN FOR WORK
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-[1.1]">
+                    Mengkreasikan Ide <br>
+                    Menjadi <span class="text-primary relative inline-block">
+                        Realitas
+                        <svg class="absolute w-full h-3 -bottom-1 left-0 text-green-200 -z-10" viewBox="0 0 100 10"
+                            preserveAspectRatio="none">
+                            <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" />
+                        </svg>
+                    </span>
+                </h1>
+                <div class="text-xl md:text-2xl text-slate-500 mb-8 h-8 font-medium">
+                    Saya seorang <span id="typing-text" class="text-slate-800 font-bold"></span><span
+                        class="cursor">&nbsp;</span>
+                </div>
+                <p class="text-slate-500 mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed">
+                    Menggabungkan estetika desain grafis dengan ketangguhan kode pemrograman untuk menciptakan produk
+                    digital yang indah dan fungsional.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#contact"
+                        class="px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primaryDark hover:-translate-y-1 transition-all shadow-lg shadow-primary/30 text-center">
+                        Mulai Proyek
+                    </a>
+                    <a href="#projects"
+                        class="px-8 py-3 bg-white border border-slate-200 text-slate-700 rounded-full font-semibold hover:border-primary hover:text-primary hover:-translate-y-1 transition-all shadow-sm text-center">
+                        Lihat Portfolio
+                    </a>
+                </div>
+
+                <div class="mt-10 flex items-center justify-center md:justify-start gap-6">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all"><i
+                            class="fab fa-github"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all"><i
+                            class="fab fa-dribbble"></i></a>
+                </div>
+            </div>
+
+            <div class="relative reveal delay-200 order-1 md:order-2">
+                <div class="relative w-full max-w-md mx-auto aspect-[4/5] md:aspect-square">
+                    <div class="absolute inset-4 bg-primary/20 rounded-[2rem] -rotate-6"></div>
+                    <img src="./img/Gemini_Generated_Image_64dzni64dzni64dz.png"
+                        alt="Profile"
+                        class="rounded-[2rem] shadow-2xl w-full h-full object-cover relative z-10 bg-white">
+                    <div class="absolute -left-6 bottom-12 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-3 animate-bounce"
+                        style="animation-duration: 4s;">
+                        <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center text-cyan-600">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-bold uppercase">Tools</p>
+                            <p class="text-sm font-bold text-slate-800">Canva Expert</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-y border-slate-100">
+        <div class="container mx-auto px-6">
+            <p class="text-center text-slate-400 font-semibold mb-8 tracking-widest text-sm uppercase">Tech & Design
+                Stack</p>
+            <div
+                class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="flex flex-col items-center gap-2 group cursor-pointer"><i
+                        class="fas fa-palette text-4xl group-hover:text-cyan-500 transition-colors"></i><span
+                        class="font-bold text-slate-700">Canva</span></div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer"><i
+                        class="fab fa-html5 text-4xl group-hover:text-orange-500 transition-colors"></i><span
+                        class="font-bold text-slate-700">HTML5</span></div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer"><i
+                        class="fab fa-css3-alt text-4xl group-hover:text-blue-500 transition-colors"></i><span
+                        class="font-bold text-slate-700">CSS3</span></div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer"><i
+                        class="fab fa-js text-4xl group-hover:text-yellow-400 transition-colors"></i><span
+                        class="font-bold text-slate-700">JavaScript</span></div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer"><i
+                        class="fab fa-react text-4xl group-hover:text-cyan-400 transition-colors"></i><span
+                        class="font-bold text-slate-700">React</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm">Apa yang saya tawarkan</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Layanan <span
+                        class="text-primary">Profesional</span></h2>
+                <p class="text-slate-500 mt-2 max-w-lg mx-auto">Solusi lengkap mulai dari desain visual hingga
+                    pengembangan website.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 reveal delay-100">
+
+                <div
+                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-soft transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Canva Design</h3>
+                    <p class="text-slate-500 leading-relaxed mb-4">Pembuatan konten media sosial, presentasi pitch deck,
+                        dan materi promosi cetak dengan template yang mudah diedit.</p>
+                    <ul class="text-sm text-slate-500 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Instagram
+                            Feeds</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Company
+                            Profile</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Simple
+                            design</li>
+                    </ul>
+                </div>
+
+                <div
+                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-soft transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Web Development</h3>
+                    <p class="text-slate-500 leading-relaxed mb-4">Membangun website responsif dan cepat menggunakan
+                        teknologi modern seperti React dan Tailwind CSS.</p>
+                    <ul class="text-sm text-slate-500 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Web app
+                        </li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i> Website
+                            Portofolio</li>
+                    </ul>
+                </div>
+
+                <div
+                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-soft transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">UI/UX Design</h3>
+                    <p class="text-slate-500 leading-relaxed mb-4">Merancang antarmuka aplikasi atau website yang
+                        user-friendly dan estetis sebelum masuk tahap coding.</p>
+                    <ul class="text-sm text-slate-500 space-y-2">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i>
+                            Wireframing</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-primary text-xs"></i>
+                            High-Fidelity Prototype</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="designs" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+                <div>
+                    <span class="text-primary font-bold tracking-wider uppercase text-sm">Creative Works</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Portofolio <span
+                            class="text-primary">Desain</span></h2>
+                    <p class="text-slate-500 mt-2 max-w-lg">Koleksi visual branding dan media sosial.</p>
+                </div>
+                <a href="deletegenerator.html"
+                    class="mt-4 md:mt-0 text-slate-600 hover:text-primary font-semibold flex items-center gap-2 group transition-colors">
+                    Lihat di Album <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal delay-100">
+                <div class="gallery-item group relative rounded-2xl overflow-hidden shadow-sm bg-white"
+                    data-category="social">
+                    <div style="position: relative; width: 100%; height: 0; padding-top: 125.0000%;
+                        padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-bottom: 1rem; overflow: hidden;
+                        border-radius: 8px; will-change: transform;">
+                        <iframe loading="lazy"
+                            style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                            src="https://www.canva.com/design/DAG8hZHkV5w/M-VKd28HsSa5v-NwAo2btQ/view?embed"
+                            allowfullscreen="allowfullscreen" allow="fullscreen">
+                        </iframe>
+                    </div>
+
+                    <div class="p-4 border-t border-slate-100 bg-white">
+                        <span class="text-primary text-xs font-bold uppercase tracking-wider">Live Preview</span>
+                        <h3 class="text-slate-800 text-lg font-bold">Template Typography starter V1</h3>
+                        <p class="text-slate-400 text-sm">Canva • Interactive Embed</p>
+                    </div>
+                </div>
+                <div class="gallery-item group relative rounded-2xl overflow-hidden shadow-sm bg-white"
+                    data-category="social">
+                    <div style="position: relative; width: 100%; height: 0; padding-top: 125.0000%;
+                        padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-bottom: 1rem; overflow: hidden;
+                        border-radius: 8px; will-change: transform;">
+                        <iframe loading="lazy"
+                            style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                            src="https://www.canva.com/design/DAG85ZZNvJQ/w_6zkis2BSH1hsdOaS3Kzw/view?embed"
+                            allowfullscreen="allowfullscreen" allow="fullscreen">
+                        </iframe>
+                    </div>
+
+                    <div class="p-4 border-t border-slate-100 bg-white">
+                        <span class="text-primary text-xs font-bold uppercase tracking-wider">Live Preview</span>
+                        <h3 class="text-slate-800 text-lg font-bold">Template Typography starter V1</h3>
+                        <p class="text-slate-400 text-sm">Canva • Interactive Embed</p>
+                    </div>
+                </div>
+                <div class="gallery-item group relative rounded-2xl overflow-hidden shadow-sm bg-white"
+                    data-category="social">
+                    <div style="position: relative; width: 100%; height: 0; padding-top: 125.0000%;
+                        padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-bottom: 1rem; overflow: hidden;
+                        border-radius: 8px; will-change: transform;">
+                        <iframe loading="lazy"
+                            style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                            src="https://www.canva.com/design/DAG85pqxhCw/7nA8oLLJtxcCXMfuBEjmBQ/view?embed"
+                            allowfullscreen="allowfullscreen" allow="fullscreen">
+                        </iframe>
+                    </div>
+
+                    <div class="p-4 border-t border-slate-100 bg-white">
+                        <span class="text-primary text-xs font-bold uppercase tracking-wider">Live Preview</span>
+                        <h3 class="text-slate-800 text-lg font-bold">Advanced Template Typography V1</h3>
+                        <p class="text-slate-400 text-sm">Canva • Interactive Embed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm">Development</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Proyek <span
+                        class="text-primary">Coding</span></h2>
+                <p class="text-slate-500 mt-2">Aplikasi web dan website yang saya bangun dari nol.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="bg-white rounded-2xl border border-slate-100 hover:border-primary/30 shadow-sm hover:shadow-soft transition-all duration-300 overflow-hidden group reveal">
+                    <div class="h-48 overflow-hidden bg-slate-100 relative">
+                        <img src="./img/Tsementri banner.png" alt="Project 1"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors">
+                            Organisation portofolio</h3>
+                        <p class="text-slate-500 text-sm mb-4 line-clamp-2">Portofolio online full-stack dengan fitur
+                            keranjang dan pembayaran.</p>
+                        <div class="flex gap-2 mb-6"><span
+                                class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">TailwindCSS</span><span
+                                class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">NodeJS</span>
+                                <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded font-medium">Supabase</span>
+                        </div>
+                        <a href="https://arkantml.github.io/TSEMENTRI"
+                            class="text-primary font-semibold text-sm hover:underline">Lihat Detail &rarr;</a>
+                    </div>
+                </div>
+                <div
+                    class="bg-white rounded-2xl border border-slate-100 hover:border-primary/30 shadow-sm hover:shadow-soft transition-all duration-300 overflow-hidden group reveal delay-100 p-11">
+                    <div class="flex justify-center items-center h-48">
+                        <h1 class="text-2xl bg-gray-500">Segera Hadir</h1>
+                    </div>
+                </div>
+                <div
+                    class="bg-white rounded-2xl border border-slate-100 hover:border-primary/30 shadow-sm hover:shadow-soft transition-all duration-300 overflow-hidden group reveal delay-200">
+                    <div class="flex justify-center items-center h-48">
+                        <h1 class="text-2xl bg-gray-500">Segera Hadir</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-primary font-bold tracking-wider uppercase text-sm">Testimonial</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Kata <span
+                        class="text-primary">Klien</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <h1 class="mx-auto text-2xl mb-12">Jadilah yang pertama</h1>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-bg border-t border-slate-200">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Pengalaman <span
+                            class="text-primary">Kerja</span></h2>
+                    <p class="text-slate-500">Jejak profesional saya dalam dunia industri kreatif dan teknologi.</p>
+                </div>
+
+                <div class="space-y-8 border-l-2 border-slate-200 ml-3 pl-8 relative reveal">
+                    <div class="relative">
+                        <span
+                            class="absolute -left-[41px] top-1 w-5 h-5 rounded-full border-4 border-white bg-primary shadow-sm"></span>
+                        <h4 class="text-lg font-bold text-slate-800">Freelance Graphic Designer</h4>
+                        <p class="text-primary text-sm font-medium mb-2">2024 - Sekarang • Freelance</p>
+                        <p class="text-slate-500 text-sm">Bertanggung jawab atas visual branding klien dan materi
+                            promosi media sosial menggunakan Canva dan Adobe Suite.</p>
+                    </div>
+                    <div class="relative">
+                        <span
+                            class="absolute -left-[41px] top-1 w-5 h-5 rounded-full border-4 border-white bg-slate-300"></span>
+                        <h4 class="text-lg font-bold text-slate-800">Freelance Web Developer</h4>
+                        <p class="text-slate-500 text-sm font-medium mb-2">2025 - Sekarang • Freelance/on-order</p>
+                        <p class="text-slate-500 text-sm">Membangun website portofolio organisasi dan pribadi serta
+                            mengoptimalkan performa dan personalisasi website.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-white border-t border-slate-100">
+        <div class="container mx-auto px-6">
+            <div class="bg-primary/5 rounded-3xl p-8 md:p-16 border border-primary/10">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="reveal">
+                        <span class="text-primary font-bold tracking-wider uppercase text-sm">Contact Me</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-6">Mari Mulai Proyek <br> <span
+                                class="text-primary">Bersama</span></h2>
+                        <p class="text-slate-500 mb-8">Punya ide proyek atau butuh desain grafis? Jangan ragu untuk
+                            menghubungi saya. Konsultasi gratis!</p>
+
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-primary">
+                                    <i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-bold uppercase">Email</p>
+                                    <p class="text-slate-800 font-medium">arkanmuhammad239@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm text-primary">
+                                    <i class="fab fa-whatsapp"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-400 font-bold uppercase">WhatsApp</p>
+                                    <p class="text-slate-800 font-medium">+62 895 0538 6319</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg reveal delay-100">
+                        <form onsubmit="event.preventDefault(); alert('Pesan Anda terkirim!');"
+                            name="submit-to-google-sheet">
+                            <div class="mb-4">
+                                <label class="block text-slate-600 text-sm font-bold mb-2">Nama Lengkap</label>
+                                <input name="nama" type="text"
+                                    class="w-full px-4 py-3 rounded-lg bg-bg border border-slate-200 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                                    placeholder="John Doe">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-slate-600 text-sm font-bold mb-2">Email</label>
+                                <input name="email" type="email"
+                                    class="w-full px-4 py-3 rounded-lg bg-bg border border-slate-200 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                                    placeholder="email@contoh.com">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-slate-600 text-sm font-bold mb-2">Pesan</label>
+                                <textarea name="pesan" rows="4"
+                                    class="w-full px-4 py-3 rounded-lg bg-bg border border-slate-200 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                                    placeholder="Ceritakan tentang proyek Anda..."></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full py-4 bg-primary text-white font-bold rounded-lg hover:bg-primaryDark transition-all shadow-lg shadow-primary/20">Kirim
+                                Pesan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 bg-white border-t border-slate-100 text-center">
+        <p class="text-slate-500 text-sm">&copy; <span id="year"></span> @MA. All rights reserved.</p>
+    </footer>
+
+
+</body>
+
+</html>
